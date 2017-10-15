@@ -1,0 +1,141 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void input(int n,int arr[][2])
+{
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < 2; j++)
+        {
+            cin >> arr[i][j];
+        }
+    }
+}
+
+void create_adjacency_matrix(int n, int m, int arr[][2], bool **arr2)
+{
+    for(int i =0; i < m; i++)
+    {
+        for(int j = 0; j < m; j++)
+        {
+            arr2[i][j] = 0;
+        }
+    }
+
+    for(int i = 0; i < n; i++)
+    {
+        arr2[arr[i][0]-1][arr[i][1]-1] = 1;
+        arr2[arr[i][1]-1][arr[i][0]-1] = 1;
+    }
+}
+
+void cout_adjacency_matrix(int n,  bool **arr)
+{
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void create_adjacency_list(int m, vector<vector<int> >& adj_list, int arr[][2])
+{
+    for(int i =0; i < m; i++)
+    {
+        adj_list[arr[i][0]-1].push_back(arr[i][1]);
+        adj_list[arr[i][1]-1].push_back(arr[i][0]);
+    }
+}
+
+void cout_adjacency_list(vector<vector<int> >& adj_list)
+{
+    for(vector<vector<int> >::iterator it = adj_list.begin(); it != adj_list.end(); ++it)
+    {
+        for(vector<int>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+        {
+            cout << *it2 << " ";
+        }
+        cout << endl;
+    }
+}
+
+void create_incidence_matrix(int n, int m, int arr[][2], bool **arr2)
+{
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < m; j++)
+        {
+            arr2[i][j] = 0;
+        }
+    }
+
+    for(int i = 0; i < m ; i++)
+    {
+        arr2[arr[i][0]-1][i] = 1;
+        arr2[arr[i][1]-1][i] = 1;
+    }
+}
+
+void cout_incidence_matrix(int n, int m, bool **arr)
+{
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < m; j++)
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main()
+{
+    int NumberOfVerticies;
+    int NumberOfRibs;
+
+    cin >> NumberOfVerticies;
+    cin >> NumberOfRibs;
+
+    vector<vector<int> > AdjacencyList(NumberOfVerticies);
+    int EdgeList[NumberOfRibs][2];
+    bool **AdjacencyMatrix = new bool*[NumberOfVerticies];
+    bool **IncidenceMatrix = new bool*[NumberOfVerticies];
+
+    for(int i = 0; i < NumberOfVerticies; i++)
+    {
+        AdjacencyMatrix[i] = new bool[NumberOfVerticies];
+    }
+
+    for(int i = 0; i < NumberOfVerticies; i++)
+    {
+        IncidenceMatrix[i] = new bool[NumberOfRibs];
+    }
+
+    input(NumberOfRibs, EdgeList);
+
+    create_adjacency_matrix(NumberOfRibs, NumberOfVerticies, EdgeList, AdjacencyMatrix);
+    cout_adjacency_matrix(NumberOfVerticies, AdjacencyMatrix);
+
+    create_adjacency_list(NumberOfVerticies, AdjacencyList, EdgeList);
+    cout_adjacency_list(AdjacencyList);
+
+    create_incidence_matrix(NumberOfVerticies, NumberOfRibs, EdgeList, IncidenceMatrix);
+    cout_incidence_matrix(NumberOfVerticies, NumberOfRibs, IncidenceMatrix);
+
+    for (int i = 0; i < NumberOfVerticies; i++)
+    {
+        delete[] AdjacencyMatrix[i];
+    }
+
+    for(int i = 0; i < NumberOfVerticies; i++)
+    {
+        delete[] IncidenceMatrix[i];
+    }
+
+    return 0;
+}
