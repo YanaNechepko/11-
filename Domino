@@ -155,7 +155,7 @@ int main()
     if(Is_Euler(AdjacencyList,NumberOfVerticies, AdjacencyMatrix))
 
     {
-        Find_path(AdjacencyList,NumberOfVerticies, AdjacencyMatrix);//Путь выводит, как идти по доминошкам
+        Find_path(AdjacencyList,NumberOfVerticies, AdjacencyMatrix);
     }
 
     else
