@@ -1,4 +1,4 @@
- #include <iostream>
+#include <iostream>
 #include <vector>
 #include <stack>
 
@@ -30,7 +30,7 @@ void Generate(int k, int arr[])
                       }
 
                   else
-                     {
+                    {
                          temp+=X[i]*10*(K-i-1);
                      }
               }
@@ -48,8 +48,6 @@ void Generate(int k, int arr[])
          }
       }
    }
-
-
 
 void create_adjacency_matrix(int n, int m, int **arr2, int ten, int arr[])
   {
