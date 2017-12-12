@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <vector>
 #include <stack>
 
@@ -20,8 +20,8 @@ void Generate(int k, int arr[])
               int temp = 0;
               permutations.push_back(vector<int>());
 
-             for(int i=0;i<K;i++)
-              {
+              for(int i=0;i<K;i++)
+               {
                   permutations[counter3].push_back(X[i]);
 
                   if(K-i==1 )
@@ -34,7 +34,7 @@ void Generate(int k, int arr[])
                          temp+=X[i]*10*(K-i-1);
                      }
 
-             }
+              }
 
              arr[counter3] = temp;
              counter3++;
