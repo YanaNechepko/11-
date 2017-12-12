@@ -33,7 +33,6 @@ void Generate(int k, int arr[])
                      {
                          temp+=X[i]*10*(K-i-1);
                      }
-
               }
 
              arr[counter3] = temp;
